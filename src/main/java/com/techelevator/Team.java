@@ -1,6 +1,7 @@
 package com.techelevator;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,6 +21,14 @@ public class Team {
         return city;
     }
 
+    public List<Player> getRoster() {
+        return roster;
+    }
+
+    public void joinRoster(Player player) {
+        roster.add(player);
+    }
+
     public String getTeamName() {
         return teamName;
     }
@@ -29,24 +38,28 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public void addPlayersToTeamFromFile(Team team, File inputFile) { // make filereader
-        try (Scanner fileReader = new Scanner(inputFile)){
-
-            while(fileReader.hasNextLine()) {
-            String line = fileReader.nextLine();
-
-            // get player
-                Player newplayer = makePlayer(line);
-                this.roster.add(newplayer);
-            }
-
-
-
-        } catch (FileNotFoundException e){
-            System.out.println("filenotfound");
-        }
-
+    public String getFullName() {
+        return city + " " + teamName;
     }
+
+//    public void addPlayersToTeamFromFile(Team team, File inputFile) { // make filereader
+//        try (Scanner fileReader = new Scanner(inputFile)){
+//
+//            while(fileReader.hasNextLine()) {
+//            String line = fileReader.nextLine();
+//
+//            // get player
+//                Player newplayer = makePlayer(line);
+//                this.roster.add(newplayer);
+//            }
+//
+//
+//
+//        } catch (FileNotFoundException e){
+//            System.out.println("filenotfound");
+//        }
+//
+//    }
 
     /**
      * makePlayer reads a files line and splits it into an array, with array items it creates a new player.
@@ -94,22 +107,42 @@ public class Team {
      * @param inputFile
      * @return
      */
-    public Team[] makeTeams(File inputFile) {
-        try{
-            Scanner fileReader = new Scanner(inputFile);
+    public void makeTeams(File inputFile, List<Team> allTeams) {
+        File[] teamFiles = inputFile.listFiles();
 
-            while(fileReader.hasNextLine()){
+
+            String teamName;
+            for(File each : teamFiles) {
+                teamName = each.toString().split("\\_")[0]+" " + each.toString().split("\\_")[1];
+
+                try (Scanner fileScanner = new Scanner(each)) {
+                    fileScanner.nextLine();
+                    while (fileScanner.hasNextLine()) {
+                        String line = fileScanner.nextLine();
+
+                        Player newPlayer = makePlayer(line);
+
+                        for(Team team : allTeams) {
+                            if (teamName.equals(team.getFullName())) {
+                                roster.add(newPlayer);
+                            }
+
+                        }
+
+                    }
+
+
+                } catch (FileNotFoundException e) {
+                    System.out.println("");
+                }
 
             }
 
-
-
-
-
-        }catch (FileNotFoundException e){
-            System.out.println("oops");
-        }
-
+    }
+    @Override
+    public String toString(){
+        String lala = this.getCity() + " " + this.getTeamName();
+        return lala;
     }
 
 }
