@@ -1,11 +1,12 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class WaiverWire{
 
-private List<Player> roster =new ArrayList<>();
+private List<Player> roster =new LinkedList<>();
 
 private final String name = "Waiver Wire";
 

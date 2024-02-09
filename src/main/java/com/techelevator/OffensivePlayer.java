@@ -17,4 +17,13 @@ public class OffensivePlayer extends Player{
         this.goals = goals;
         this.assists = assists;
     }
+
+    @Override
+    public String fullStatLine(){
+        String S = getNumber() + ") " + getName() + " " + getPosition() + " " + getSalary() + "\n"
+                +"Goals: " + getGoals()  + "\n"
+                + "Assists: " + getAssists() + "\n";
+
+        return S;
+    }
 }

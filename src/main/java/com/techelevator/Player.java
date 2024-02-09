@@ -1,6 +1,8 @@
 package com.techelevator;
 
-public abstract class Player {
+import java.util.Comparator;
+
+public abstract class Player implements IHasStats{
     private int salary;
     private int number;
     private String position;
@@ -29,6 +31,9 @@ public abstract class Player {
         return name;
     }
 
+    public String listPlayerStatsLimited() {
+        return (getNumber() + ") " + getName() + " " + getPosition() + " " + getSalary());
+    }
 
 
 }

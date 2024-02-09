@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 public class Team {
-    private final int budgetCap = 80_500_000;
+    private final int BUDGET_CAP = 80_500_000;
     private String city;
     private String teamName;
 
@@ -14,7 +14,12 @@ public class Team {
 
 
     public int getBudgetCap() {
-        return budgetCap;
+        int moneySpent = 0;
+        for (Player player : roster) {
+            moneySpent += player.getSalary();
+
+        }
+        return BUDGET_CAP - moneySpent;
     }
 
     public String getCity() {

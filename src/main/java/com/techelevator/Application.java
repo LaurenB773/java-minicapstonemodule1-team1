@@ -20,14 +20,59 @@ public class Application {
     public void run(){
         File fileToRead = new File("TeamData");
 
+        boolean running = true;
         List<Team> allTeams= teamSplitter(fileToRead);
         System.out.println(allTeams);
 
-        WaiverWire waiverWire = new WaiverWire();
+//        WaiverWire waiverWire = new WaiverWire();
         makeTeams(fileToRead, allTeams);
+        Team WaiverWire = new Team("Waiver", "Wire");
+        allTeams.add(WaiverWire);
 
-//        userInterface.menu();
-        userInterface.displayTeams(allTeams, waiverWire.getRoster());
+
+        while (running) {
+            String choice = userInterface.menu();
+            boolean validChoice = false;
+            while (!validChoice) {
+                switch (choice) {
+                    case "1":
+                        userInterface.displayTeams(allTeams);
+                        validChoice = true;
+                        break;
+
+                    case "2":
+
+                        validChoice = true;
+                        break;
+                    case "3":
+                        Team waiverWire = allTeams.get(allTeams.size()- 1);
+                        if(!(waiverWire.getRoster().size() == 0)) { // if waiver wire is not empty
+                            userInterface.displayWaiverWire(waiverWire, allTeams);
+                            validChoice = true;
+                            break;
+                        } else {
+                            System.out.println("No free agents available!");
+                            validChoice = true;
+                            break;
+                        }
+                    case "4":
+
+                        validChoice = true;
+                        break;
+
+                    case "5":
+
+                        validChoice = true;
+                        running = false;
+                        System.out.println("Goodbye Coach!");
+                        break;
+                    default:
+                        System.out.println("Please only select numbers 1 through 5");
+                        choice = userInterface.menu();
+                        break;
+                }
+            }
+        }
     }
 
     public List<Team> teamSplitter(File fileToRead) {

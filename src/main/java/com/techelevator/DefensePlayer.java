@@ -1,6 +1,8 @@
 package com.techelevator;
 
-public class DefensePlayer extends Player{
+import java.util.List;
+
+public class DefensePlayer extends Player {
 
     private int hits;
     private int blockedShots;
@@ -17,6 +19,15 @@ public class DefensePlayer extends Player{
         super(salary, number, position, name);
         this.hits = hits;
         this.blockedShots = blockedShots;
+    }
+
+    @Override
+    public String fullStatLine(){
+        String S = getNumber() + ") " + getName() + " " + getPosition() + " " + getSalary() + "\n"
+                +"Hits: " + getHits()  + "\n"
+                + "Blocked Shots: " + getBlockedShots() + "\n";
+
+        return S;
     }
 
 }
