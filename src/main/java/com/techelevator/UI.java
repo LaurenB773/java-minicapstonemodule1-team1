@@ -102,6 +102,7 @@ public class UI {
             System.out.println(each.listPlayerStatsLimited());
 
         }
+        System.out.println();
 
         System.out.println("Choose a player to sign");
         System.out.println();
@@ -130,6 +131,7 @@ public class UI {
 
 
         // check logic method
+        System.out.println();
         System.out.println("Sign player? (Y/N)");
         String choices = userInput.nextLine();
 
@@ -149,10 +151,12 @@ public class UI {
         }
         if(checkLogic(chosenTeamActually, removedPlayer.getSalary())) { // if it can pass all checks involving cap space and team room
             // if true
+            System.out.println();
             System.out.println("Player signed!");
             chosenTeamActually.joinRoster(removedPlayer);
         } else {
             // if false
+            System.out.println();
             System.out.println("You can't do that");
             waiverWire.joinRoster(removedPlayer);
         }

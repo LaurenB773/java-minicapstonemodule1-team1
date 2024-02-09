@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class Application {
     UI userInterface = new UI();
 
+    Trade trade = new Trade();
+
     public static void main(String[] args) {
 
 
@@ -41,7 +43,7 @@ public class Application {
                         break;
 
                     case "2":
-
+                        trade.tradePlayer(allTeams);
                         validChoice = true;
                         break;
                     case "3":
@@ -55,7 +57,7 @@ public class Application {
                             validChoice = true;
                             break;
                         }
-                    case "4":
+                    case "4": // todo
 
                         validChoice = true;
                         break;
