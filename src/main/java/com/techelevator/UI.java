@@ -194,6 +194,12 @@ public class UI {
         return false;
     }
 
+    public String choosePlayer() {
+        return userInput.nextLine();
+
+
+    }
+
 //    public boolean checkLogic(Team buyingTeam, Team sellingTeam) { // for trade
 //
 //

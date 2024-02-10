@@ -85,7 +85,12 @@ public class Trade {
                    selectedTeam.getRoster().add(each);
                }
 
+<<<<<<< HEAD
             }
+=======
+//            boolean confirmTrade = tradeLogic();
+            // todo add to file
+>>>>>>> 2cfcaf759a624fdbe0919d476a3fc989cab525b4
 
         }
     }
