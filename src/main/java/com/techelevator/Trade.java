@@ -74,23 +74,17 @@ public class Trade {
         if (yesOrNo.equalsIgnoreCase("n")) {
             return;
         } else { // todo logic
-            if (yesOrNo.equalsIgnoreCase("y")){
-               boolean confirmTrade = tradeLogic(selectedTeam.getBudgetCap(), selectedTeam2.getBudgetCap(), selectedTeam.getRoster().size(), selectedTeam2.getRoster().size(), playersWanted, playersGiving);
-               for(Player each : playersWanted) {
-                   selectedTeam.getRoster().remove(each);
-                   selectedTeam2.getRoster().add(each);
-               }
-               for(Player each : playersGiving){
-                   selectedTeam2.getRoster().remove(each);
-                   selectedTeam.getRoster().add(each);
-               }
-
-<<<<<<< HEAD
+            if (yesOrNo.equalsIgnoreCase("y")) {
+                boolean confirmTrade = tradeLogic(selectedTeam.getBudgetCap(), selectedTeam2.getBudgetCap(), selectedTeam.getRoster().size(), selectedTeam2.getRoster().size(), playersWanted, playersGiving);
+                for (Player each : playersWanted) {
+                    selectedTeam.getRoster().remove(each);
+                    selectedTeam2.getRoster().add(each);
+                }
+                for (Player each : playersGiving) {
+                    selectedTeam2.getRoster().remove(each);
+                    selectedTeam.getRoster().add(each);
+                }
             }
-=======
-//            boolean confirmTrade = tradeLogic();
-            // todo add to file
->>>>>>> 2cfcaf759a624fdbe0919d476a3fc989cab525b4
 
         }
     }
@@ -176,10 +170,7 @@ public class Trade {
             return true;
             }
             return false;
-            //make the trade is cap1 > List <player> get salary && if team1 < 23
-            //&
-            //make the trade is cap2 > List <player> get salary && if team2 < 2
-            //, int teamSize1, int teamSize2
+            
     }
 
 }
