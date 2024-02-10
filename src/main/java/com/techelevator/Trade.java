@@ -1,5 +1,8 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +13,7 @@ public class Trade {
 
     SortByNumber playerSorter = new SortByNumber();
 
-    public void tradePlayer(List<Team> allTeams) {
+    public void tradePlayer(List<Team> allTeams){
 
         List<Player> playersWanted = new ArrayList<>();
         List<Player> playersGiving = new ArrayList<>();
@@ -63,7 +66,6 @@ public class Trade {
 
         }
 
-
         tradeContentDisplay(playersGiving, playersWanted);
         System.out.println();
         System.out.println("Confirm trade? (Y/N)");
@@ -71,11 +73,19 @@ public class Trade {
 
         if (yesOrNo.equalsIgnoreCase("n")) {
             return;
-        } else {
-            // todo logic
+        } else { // todo logic
+            if (yesOrNo.equalsIgnoreCase("y")){
+               boolean confirmTrade = tradeLogic(selectedTeam.getBudgetCap(), selectedTeam2.getBudgetCap(), selectedTeam.getRoster().size(), selectedTeam2.getRoster().size(), playersWanted, playersGiving);
+               for(Player each : playersWanted) {
+                   selectedTeam.getRoster().remove(each);
+                   selectedTeam2.getRoster().add(each);
+               }
+               for(Player each : playersGiving){
+                   selectedTeam2.getRoster().remove(each);
+                   selectedTeam.getRoster().add(each);
+               }
 
-            boolean confirmTrade = tradeLogic();
-            // todo add to file
+            }
 
         }
     }
@@ -111,8 +121,6 @@ public class Trade {
             int selection = Integer.parseInt(choice);
             selectedTeam = allTeams.get(selection - 1);
 
-
-
             selectedTeam.getRoster().sort(playerSorter);
 
             for (Player each : selectedTeam.getRoster()) {
@@ -147,8 +155,26 @@ public class Trade {
         return null;
     }
 
-    public void tradeLogic(int capteam1, int capteam2, int teamsize1, int teamsize2, List<Player> team1, List<Player> team2) {
+    public boolean tradeLogic(int capTeam1, int capTeam2, int teamSize1, int teamSize2, List<Player> team1, List<Player> team2) {
+      int teamOneSalary = 0;
+        for (Player each : team1){
+           int playerSalary = each.getSalary();
+           teamOneSalary = playerSalary + teamOneSalary;
+        }
 
+        int teamTwoSalary = 0;
+        for (Player each : team2){
+            int playerSalary = each.getSalary();
+            teamTwoSalary = playerSalary + teamOneSalary;
+        }
+        if(capTeam1 >= teamOneSalary && capTeam2 >= teamTwoSalary && teamSize1 < 23 && teamSize2 < 23) {
+            return true;
+            }
+            return false;
+            //make the trade is cap1 > List <player> get salary && if team1 < 23
+            //&
+            //make the trade is cap2 > List <player> get salary && if team2 < 2
+            //, int teamSize1, int teamSize2
     }
 
 }
