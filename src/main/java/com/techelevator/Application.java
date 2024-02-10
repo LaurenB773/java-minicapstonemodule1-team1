@@ -11,6 +11,8 @@ public class Application {
 
     Trade trade = new Trade();
 
+    FindPlayer playerFinder = new FindPlayer();
+
     public static void main(String[] args) {
 
 
@@ -57,8 +59,10 @@ public class Application {
                             validChoice = true;
                             break;
                         }
-                    case "4": // todo
-
+                    case "4": // done
+                        System.out.println("Enter a string to search for your player");
+                        String playerToFind = userInterface.choosePlayer();
+                        playerFinder.findPlayer(allTeams, playerToFind);
                         validChoice = true;
                         break;
 

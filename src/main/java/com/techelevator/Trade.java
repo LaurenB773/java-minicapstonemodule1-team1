@@ -74,7 +74,7 @@ public class Trade {
         } else {
             // todo logic
 
-            boolean confirmTrade = tradeLogic();
+//            boolean confirmTrade = tradeLogic();
             // todo add to file
 
         }
