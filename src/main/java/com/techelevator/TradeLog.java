@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TradeLog{
-    private final String fileName = "C:\\Users\\Student\\workspace\\capstones\\java-minicapstonemodule1-team1\\target\\log.txt";
+    private final String fileName = ("C:/Users/Student/workspace/capstones/java-minicapstonemodule1-team1/target/log.txt");
 
     File tradeLog = new File(fileName);
 
@@ -37,7 +37,11 @@ public class TradeLog{
     }
 
     public void printPlayersToTradeConfirmed(Team team1, Team team2, List <Player> tradedPlayer, List <Player> tradedPlayer2){
-        String logPlayersToTradeConfirmed = getDateTime() + " " + team1 + ", " + tradedPlayer.toString() + " <-> " + team2 + ", " + tradedPlayer2.toString() + " " + "Confirmed";
+
+        String tradePlayers1 = tradeContentToString(tradedPlayer);
+        String tradePlayers2 = tradeContentToString(tradedPlayer2);
+
+        String logPlayersToTradeConfirmed = getDateTime() + " " + team1 + ", " + tradePlayers1 + " <-> " + team2 + ", " + tradePlayers2 + " " + "Confirmed";
          try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
          PrintWriter fileAppender = new PrintWriter(fileWriter)){
 
@@ -64,6 +68,7 @@ public class TradeLog{
 
     }
     public void printWaivedPlayer(Team team, Player waivedPlayer){
+
         String logWaivedPlayer = getDateTime() + " " + team + ", " + waivedPlayer.getName() + " -- " + "Waived";
         try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
             PrintWriter fileAppender = new PrintWriter(fileWriter)){
@@ -88,4 +93,21 @@ public class TradeLog{
     }
 
 
+    public String tradeContentToString(List<Player> tradeContent) {
+        String oops = null;
+
+        if (tradeContent.size() == 1) {
+            return tradeContent.get(0).getName();
+        }else {
+            for (Player each : tradeContent) {
+                if (tradeContent.indexOf(each) == tradeContent.size() - 1) {
+                    oops = oops + each.getName();
+                } else {
+
+                    oops = oops + each.getName() + ", ";
+                }
+            }
+        }
+        return oops;
+    }
 }

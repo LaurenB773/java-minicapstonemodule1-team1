@@ -175,6 +175,7 @@ public class UI extends TradeLog{
                 int playerIndex = playerTeam.getRoster().indexOf(playerToCut);
                 removedPlayer = playerTeam.getRoster().remove(playerIndex);
                 correctChoice = true;
+                printWaivedPlayer(playerTeam, playerToCut);
                 return removedPlayer;
 
 
@@ -185,7 +186,7 @@ public class UI extends TradeLog{
                 correctChoice = true;
                 return null;
             }
-        } printWaivedPlayer(playerTeam, playerToCut);
+        }
 
         return null;
     }
