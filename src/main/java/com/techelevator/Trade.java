@@ -135,10 +135,10 @@ public class Trade extends TradeLog{
                 System.out.println(each.listPlayerStatsLimited());
 
             }
-
+            return selectedTeam;
         }
-        return selectedTeam;
 
+        return null;
 
     }
 
