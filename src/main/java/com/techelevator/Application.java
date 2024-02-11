@@ -33,7 +33,6 @@ public class Application {
         Team WaiverWire = new Team("Waiver", "Wire");
         allTeams.add(WaiverWire);
 
-
         while (running) {
             String choice = userInterface.menu();
             boolean validChoice = false;

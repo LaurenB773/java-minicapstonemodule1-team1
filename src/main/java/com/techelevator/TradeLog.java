@@ -1,61 +1,90 @@
 package com.techelevator;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Scanner;
-public class TradeLog {
-    private static final String SEPARATOR = "\t\t\t";
-    private String fileName = "log.txt";
-    File teamData = new File("TeamData");
+
+public class TradeLog{
+    private final String fileName = "C:\\Users\\Student\\workspace\\capstones\\java-minicapstonemodule1-team1\\target\\log.txt";
+
     File tradeLog = new File(fileName);
 
 
-
-
-//    //Log item
-//    public void printTradeLog(List<Team> allTeams, List<Player> player){
-//        printDateTime();
-//        printPlayersToTradeConfirmed();
-//        printPlayersToTradeDenied();
-//        printWaivedPlayer();
-//        printClaimedWaivedPlayer();
     public void createNewFile(){
 
-        //I don't think I need to go through the TeamData folder I just don't know what to do yet
-        try (Scanner fileReader = new Scanner(teamData);
-             PrintWriter printWriter = new PrintWriter(fileName)) {
+        try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
+            PrintWriter fileAppender = new PrintWriter(fileWriter)){
 
-            printWriter.println();
+                PrintWriter print = new PrintWriter(fileAppender);
+                print.print(tradeLog);
 
-
-
-
-        } catch(FileNotFoundException e){
-            System.out.println("Sorry file not found");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+            }
         }
-
+   // Log item
+    public TradeLog(){
+        createNewFile();
 
     }
-    
 
     private String getDateTime(){
-        return LocalDateTime.now().toString();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss ");
+
+        return now.format(formatter);
     }
 
-    private void printPlayersToTradeConfirmed(){
-    //01/01/2019 12:00:00 PM Team Name Player Name, Player Name <-> Team Name Player Name Confirmed
+    public void printPlayersToTradeConfirmed(Team team1, Team team2, List <Player> tradedPlayer, List <Player> tradedPlayer2){
+        String logPlayersToTradeConfirmed = getDateTime() + " " + team1 + ", " + tradedPlayer.toString() + " <-> " + team2 + ", " + tradedPlayer2.toString() + " " + "Confirmed";
+         try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
+         PrintWriter fileAppender = new PrintWriter(fileWriter)){
+
+             PrintWriter print = new PrintWriter(fileAppender);
+             print.print(logPlayersToTradeConfirmed + "\n");
+
+         }catch (IOException e){
+
+         }
+
     }
-    private void printPlayersToTradeDenied(){
-    //01/01/2019 12:00:10 PM Team Name Player Name <-> Team Name Player Name Denied
+    public void printPlayersToTradeDenied(Team team1, Team team2, List <Player> tradedPlayer, List <Player> tradedPlayer2){
+
+           String logPlayersToTradeDenied = getDateTime() + ", " + team1 + " " + tradedPlayer + " <-> " + team2 + ", " + tradedPlayer2 + " " + "Denied";
+           try (FileOutputStream fileWriter = new FileOutputStream(fileName, true);
+                PrintWriter fileAppender = new PrintWriter(fileWriter)) {
+
+               PrintWriter print = new PrintWriter(fileAppender);
+               print.print(logPlayersToTradeDenied + "\n");
+
+           } catch (IOException e) {
+
+           }
+
     }
-    private void printWaivedPlayer(){
-    //01/01/2019 12:00:15 PM Team Name Player Name -- Waived
+    public void printWaivedPlayer(Team team, Player waivedPlayer){
+        String logWaivedPlayer = getDateTime() + " " + team + ", " + waivedPlayer.getName() + " -- " + "Waived";
+        try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
+            PrintWriter fileAppender = new PrintWriter(fileWriter)){
+
+            PrintWriter print = new PrintWriter(fileAppender);
+            print.print(logWaivedPlayer + "\n");
+
+        }catch (IOException e){
+
+        }
     }
-    private void printClaimedWaivedPlayer(){
-    //01/01/2019 12:00:30 PM Team Name Player Name -- Claimed
+    public void printClaimedWaivedPlayer(Team team, Player waivedPlayer){
+        String logClaimedWaivedPlayer = getDateTime() + " " + team + ", " + waivedPlayer.getName() + " -- " + "Claimed";
+        try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
+            PrintWriter fileAppender = new PrintWriter(fileWriter)){
+
+            PrintWriter print = new PrintWriter(fileAppender);
+            print.print(logClaimedWaivedPlayer + "\n");
+
+        }catch (IOException e) {
+        }
     }
 
 

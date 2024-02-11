@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 
-public class UI {
+public class UI extends TradeLog{
     private final Scanner userInput = new Scanner(System.in);
 
     SortByNumber playerSorter = new SortByNumber();
@@ -114,7 +114,7 @@ public class UI {
                 chosenPlayer = each;
                 break;
             }
-        }
+        } printClaimedWaivedPlayer(waiverWire, chosenPlayer);
 
         //choose team of player list all teams first
 
@@ -169,19 +169,23 @@ public class UI {
         String choice = userInput.nextLine();
 
         boolean correctChoice = false;
+        Player removedPlayer;
         while (!correctChoice) {
             if (choice.equalsIgnoreCase("y")) {
                 int playerIndex = playerTeam.getRoster().indexOf(playerToCut);
-                Player removedPlayer = playerTeam.getRoster().remove(playerIndex);
+                removedPlayer = playerTeam.getRoster().remove(playerIndex);
                 correctChoice = true;
                 return removedPlayer;
 
-            } else if (choice.equalsIgnoreCase("n")) {
+
+            }
+            else if (choice.equalsIgnoreCase("n")) {
+
 
                 correctChoice = true;
                 return null;
             }
-        }
+        } printWaivedPlayer(playerTeam, playerToCut);
 
         return null;
     }
