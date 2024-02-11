@@ -11,14 +11,6 @@ public class UI extends TradeLog{
 
     SortByNumber playerSorter = new SortByNumber();
 
-    public void tradePlayer() { // TODO:
-
-    }
-
-    public void signPlayer() {
-
-    }
-
     public String menu() {
         System.out.println();
         System.out.println("(1) Display Teams");

@@ -95,10 +95,7 @@ public class TradeLog{
 
     public String tradeContentToString(List<Player> tradeContent) {
         String oops = null;
-
-        if (tradeContent.size() == 1) {
-            return tradeContent.get(0).getName();
-        }else {
+        
             for (Player each : tradeContent) {
                 if (tradeContent.indexOf(each) == tradeContent.size() - 1) {
                     oops = oops + each.getName();
@@ -107,7 +104,6 @@ public class TradeLog{
                     oops = oops + each.getName() + ", ";
                 }
             }
-        }
         return oops;
     }
 }
