@@ -47,7 +47,9 @@ public class Trade extends TradeLog{
             if (!selectedTeam2.equals(selectedTeam)) {
                 rightAnswer = true;
             } else {
+                System.out.println();
                 System.out.println("Team has to be a different team than first choice");
+                selectedTeam2 = displayTeamsTrade(allTeams);
             }
         }
 
