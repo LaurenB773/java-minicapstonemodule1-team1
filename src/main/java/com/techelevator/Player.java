@@ -35,5 +35,8 @@ public abstract class Player implements IHasStats{
         return (getNumber() + ") " + getName() + " " + getPosition() + " " + getSalary());
     }
 
-
+    @Override
+    public String toString(){
+        return getName();
+    }
 }

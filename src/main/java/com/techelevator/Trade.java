@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Trade extends TradeLog{
+public class Trade extends TradeLog {
     private final Scanner userInput = new Scanner(System.in);
     SortByNumber playerSorter = new SortByNumber();
 
     List<Player> playersWanted = new ArrayList<>();
     List<Player> playersGiving = new ArrayList<>();
+
+    String playerWantedNames = playersWanted.toString();
+    String playerGivingNames = playersGiving.toString();
 
 
     public void tradePlayer(List<Team> allTeams){
@@ -60,10 +63,10 @@ public class Trade extends TradeLog{
 
             if (morePlayers.equalsIgnoreCase("n")) {
                 wantMore2 = false;
+
             } else {
 
             }
-
         }
 
         tradeContentDisplay(playersGiving, playersWanted);
@@ -74,25 +77,42 @@ public class Trade extends TradeLog{
         if (yesOrNo.equalsIgnoreCase("n")) {
             return;
         } else {
+            /**
+             * Trade Logic
+             */
             if (yesOrNo.equalsIgnoreCase("y")) {
-                boolean confirmTrade = tradeLogic(selectedTeam.getBudgetCap(), selectedTeam2.getBudgetCap(), selectedTeam.getRoster().size(), selectedTeam2.getRoster().size(), playersWanted, playersGiving);
-                for (Player each : playersWanted) {
-                    selectedTeam.getRoster().remove(each);
-                    selectedTeam2.getRoster().add(each);
-                }
-                for (Player each : playersGiving) {
-                    selectedTeam2.getRoster().remove(each);
-                    selectedTeam.getRoster().add(each);
 
+                int playerSalaryTotal = 0;
+                for (Player each : playersWanted){
+                   int playerSalary = each.getSalary();
+                    playerSalaryTotal = playerSalary + playerSalaryTotal;
+                }
+
+                int player2SalaryTotal = 0;
+                for (Player each : playersGiving){
+                    int playerSalary = each.getSalary();
+                    player2SalaryTotal = playerSalary + player2SalaryTotal;
+                }
+
+                if (selectedTeam.getBudgetCap() - playerSalaryTotal >= 0
+                        && selectedTeam2.getBudgetCap() - player2SalaryTotal >= 0
+                        && selectedTeam.getRoster().size() < 23 && selectedTeam2.getRoster().size() < 23) {
+
+                    for (Player each : playersWanted) {
+                        selectedTeam.getRoster().remove(each);
+                        selectedTeam2.getRoster().add(each);
+                    }
+                    for (Player each : playersGiving) {
+                        selectedTeam2.getRoster().remove(each);
+                        selectedTeam.getRoster().add(each);
+                    }
                     System.out.println("Trade confirmed!");
+                    printPlayersToTradeConfirmed(selectedTeam, selectedTeam2, playersWanted, playersGiving);
+                } else {
+                    System.out.println("Can not confirm trade.");
+                    printPlayersToTradeDenied(selectedTeam, selectedTeam2, playersWanted, playersGiving);
                 }
-                printPlayersToTradeConfirmed(selectedTeam, selectedTeam2, playersWanted, playersGiving);
-            }else{
-                System.out.println("Can not confirm trade.");
-                printPlayersToTradeDenied(selectedTeam, selectedTeam2, playersWanted, playersGiving);
-
             }
-
         }
     }
 
@@ -114,7 +134,6 @@ public class Trade extends TradeLog{
             Team currentTeam = allTeams.get(i);
             int numberOfPlayers = currentTeam.getRoster().size();
                 System.out.println((i + 1) + ") " + allTeams.get(i) + " Players: " + numberOfPlayers + "     Cap Space: " + currentTeam.getBudgetCap());
-
         }
         System.out.println();
         System.out.println();
@@ -161,26 +180,26 @@ public class Trade extends TradeLog{
         return null;
     }
 
-    public boolean tradeLogic(int capTeam1, int capTeam2, int teamSize1, int teamSize2, List<Player> team1, List<Player> team2) {
-      int teamOneSalary = 0;
-        for (Player each : team1){
-           int playerSalary = each.getSalary();
-           teamOneSalary = playerSalary + teamOneSalary;
-        }
-
-        int teamTwoSalary = 0;
-        for (Player each : team2){
-            int playerSalary = each.getSalary();
-            teamTwoSalary = playerSalary + teamOneSalary;
-        }
-        if(capTeam1 >= (capTeam1 - teamOneSalary) && capTeam2 >= (capTeam1 - teamTwoSalary) && teamSize1 < 23 && teamSize2 < 23) {
-            return true;
-            }else{
-
-            return false;
-        }
-
-    }
+//    public boolean tradeLogic(int capTeam1, int capTeam2, int teamSize1, int teamSize2, List<Player> team1, List<Player> team2) {
+//      int teamOneSalary = 0;
+//        for (Player each : team1){
+//           int playerSalary = each.getSalary();
+//           teamOneSalary = playerSalary + teamOneSalary;
+//        }
+//
+//        int teamTwoSalary = 0;
+//        for (Player each : team2){
+//            int playerSalary = each.getSalary();
+//            teamTwoSalary = playerSalary + teamOneSalary;
+//        }
+//        if(capTeam1 >= (capTeam1 - teamOneSalary) && capTeam2 >= (capTeam1 - teamTwoSalary) && teamSize1 < 23 && teamSize2 < 23) {
+//            return true;
+//            }else{
+//
+//            return false;
+//        }
+//
+//    }
 
 }
 

@@ -11,13 +11,7 @@ public class UI extends TradeLog{
 
     SortByNumber playerSorter = new SortByNumber();
 
-    public void tradePlayer() { // TODO:
 
-    }
-
-    public void signPlayer() {
-
-    }
 
     public String menu() {
         System.out.println();
@@ -37,7 +31,7 @@ public class UI extends TradeLog{
     }
     public void displayTeams(List<Team> allTeams){
 
-        int fuckyouwaiverwire = 0;
+        int waiverWire = 0;
         for (int i = 0; i < allTeams.size(); i++) {
             Team currentTeam = allTeams.get(i);
             int numberOfPlayers = currentTeam.getRoster().size();
@@ -46,7 +40,7 @@ public class UI extends TradeLog{
             } else {
                 System.out.println((i + 1) + ") " + allTeams.get(i) + " Players: " + numberOfPlayers);
             }
-            fuckyouwaiverwire++;
+            waiverWire++;
         }
         System.out.println();
         System.out.println();
@@ -61,7 +55,7 @@ public class UI extends TradeLog{
             int selection = Integer.parseInt(choice);
 
             // choose team and show every one of their player stats limited
-            displayRoster(allTeams.get(selection - 1), allTeams.get(fuckyouwaiverwire - 1));
+            displayRoster(allTeams.get(selection - 1), allTeams.get(waiverWire - 1));
         }
 
 
@@ -93,6 +87,7 @@ public class UI extends TradeLog{
         System.out.println(selected.fullStatLine());
         Player cutPlayer = displayCutPlayer(selected, team);
         waiverWire.joinRoster(cutPlayer);
+//        printWaivedPlayer(waiverWire, cutPlayer);
     }
 
     public void displayWaiverWire(Team waiverWire, List<Team> allTeams) {
@@ -114,7 +109,7 @@ public class UI extends TradeLog{
                 chosenPlayer = each;
                 break;
             }
-        } printClaimedWaivedPlayer(waiverWire, chosenPlayer);
+        }
 
         //choose team of player list all teams first
 
@@ -154,6 +149,7 @@ public class UI extends TradeLog{
             System.out.println();
             System.out.println("Player signed!");
             chosenTeamActually.joinRoster(removedPlayer);
+            printClaimedWaivedPlayer(chosenTeamActually, removedPlayer);
         } else {
             // if false
             System.out.println();
@@ -173,10 +169,10 @@ public class UI extends TradeLog{
         while (!correctChoice) {
             if (choice.equalsIgnoreCase("y")) {
                 int playerIndex = playerTeam.getRoster().indexOf(playerToCut);
-                removedPlayer = playerTeam.getRoster().remove(playerIndex);
+                playerToCut = playerTeam.getRoster().remove(playerIndex);
                 correctChoice = true;
-                return removedPlayer;
-
+                printWaivedPlayer(playerTeam, playerToCut);
+                return playerToCut;
 
             }
             else if (choice.equalsIgnoreCase("n")) {
@@ -185,7 +181,8 @@ public class UI extends TradeLog{
                 correctChoice = true;
                 return null;
             }
-        } printWaivedPlayer(playerTeam, playerToCut);
+        }
+
 
         return null;
     }
