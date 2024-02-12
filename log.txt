@@ -1,4 +1,4 @@
-02/11/2024 11:57:44  Boston Bruins, Jakub Lauko -- Waived
-02/11/2024 11:57:53  Carolina Hurricanes, Jakub Lauko -- Claimed
-02/11/2024 11:58:29  Carolina Hurricanes, [Jakub Lauko] <-> Pittsburgh Penguins, [Pierre-Olivier Joseph] Confirmed
-02/11/2024 11:59:24  Pittsburgh Penguins, [Jakub Lauko, Sidney Crosby] <-> Seattle Kraken, [Pierre-Olivier Joseph, Andre Burakovsky, Devin Shore, Tomas Tatar, Kailer Yamamoto] Denied
+02/12/2024 12:22:41  Boston Bruins, Jakub Lauko -- Waived
+02/12/2024 12:22:54  Pittsburgh Penguins, Jakub Lauko -- Claimed
+02/12/2024 12:23:17  Pittsburgh Penguins, [Jakub Lauko] <-> Seattle Kraken, [Tye Kartye] Confirmed
+02/12/2024 12:23:52  Seattle Kraken, [Jakub Lauko, Andre Burakovsky] <-> Carolina Hurricanes, [Tye Kartye, Martin Necas, Teuvo Teravainen, Jesperi Kotkaniemi] Denied

@@ -11,11 +11,7 @@ public class UI extends TradeLog{
 
     SortByNumber playerSorter = new SortByNumber();
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 03011e92837e858f28210843f3e8fb3511835dca
     public String menu() {
         System.out.println();
         System.out.println("(1) Display Teams");
@@ -175,12 +171,9 @@ public class UI extends TradeLog{
                 playerToCut = playerTeam.getRoster().remove(playerIndex);
                 correctChoice = true;
                 printWaivedPlayer(playerTeam, playerToCut);
-<<<<<<< HEAD
-                return playerToCut;
-=======
-                return removedPlayer;
 
->>>>>>> 03011e92837e858f28210843f3e8fb3511835dca
+                return playerToCut;
+
 
             }
             else if (choice.equalsIgnoreCase("n")) {
@@ -190,10 +183,6 @@ public class UI extends TradeLog{
                 return null;
             }
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 03011e92837e858f28210843f3e8fb3511835dca
 
         return null;
     }

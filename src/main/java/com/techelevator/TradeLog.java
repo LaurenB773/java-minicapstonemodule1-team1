@@ -6,11 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TradeLog{
-<<<<<<< HEAD
-    private final String fileName = "C:\\Users\\Student\\workspace\\capstones\\java-minicapstonemodule1-team1\\log.txt";
-=======
-    private final String fileName = ("C:/Users/Student/workspace/capstones/java-minicapstonemodule1-team1/target/log.txt");
->>>>>>> 03011e92837e858f28210843f3e8fb3511835dca
+    private final String fileName = ("C:\\Users\\Student\\workspace\\capstones\\java-minicapstonemodule1-team1\\log.txt");
 
     File tradeLog = new File(fileName);
 
@@ -41,15 +37,10 @@ public class TradeLog{
     }
 
     public void printPlayersToTradeConfirmed(Team team1, Team team2, List <Player> tradedPlayer, List <Player> tradedPlayer2){
-<<<<<<< HEAD
+
         String logPlayersToTradeConfirmed = getDateTime() + " " + team1 + ", " + tradedPlayer + " <-> " + team2 + ", " + tradedPlayer2.toString() + " " + "Confirmed";
-=======
 
-        String tradePlayers1 = tradeContentToString(tradedPlayer);
-        String tradePlayers2 = tradeContentToString(tradedPlayer2);
 
-        String logPlayersToTradeConfirmed = getDateTime() + " " + team1 + ", " + tradePlayers1 + " <-> " + team2 + ", " + tradePlayers2 + " " + "Confirmed";
->>>>>>> 03011e92837e858f28210843f3e8fb3511835dca
          try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
          PrintWriter filePrinter = new PrintWriter(fileWriter)){
 
@@ -76,12 +67,9 @@ public class TradeLog{
 
     }
     public void printWaivedPlayer(Team team, Player waivedPlayer){
-<<<<<<< HEAD
-        String logWaivedPlayer = getDateTime() + " " + team + ", " + waivedPlayer + " -- " + "Waived";
-=======
 
-        String logWaivedPlayer = getDateTime() + " " + team + ", " + waivedPlayer.getName() + " -- " + "Waived";
->>>>>>> 03011e92837e858f28210843f3e8fb3511835dca
+        String logWaivedPlayer = getDateTime() + " " + team + ", " + waivedPlayer + " -- " + "Waived";
+
         try(FileOutputStream fileWriter = new FileOutputStream(fileName, true);
             PrintWriter filePrinter = new PrintWriter(fileWriter)){
 
@@ -105,17 +93,17 @@ public class TradeLog{
     }
 
 
-    public String tradeContentToString(List<Player> tradeContent) {
-        String oops = null;
-
-            for (Player each : tradeContent) {
-                if (tradeContent.indexOf(each) == tradeContent.size() - 1) {
-                    oops = oops + each.getName();
-                } else {
-
-                    oops = oops + each.getName() + ", ";
-                }
-            }
-        return oops;
-    }
+//    public String tradeContentToString(List<Player> tradeContent) {
+//        String oops = null;
+//
+//            for (Player each : tradeContent) {
+//                if (tradeContent.indexOf(each) == tradeContent.size() - 1) {
+//                    oops = oops + each.getName();
+//                } else {
+//
+//                    oops = oops + each.getName() + ", ";
+//                }
+//            }
+//        return oops;
+//    }
 }
